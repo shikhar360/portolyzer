@@ -41,8 +41,10 @@ body {
   height: 20px;
   background-color: #000000;
   border-radius: 50%;
-  z-index: 99999;
+  z-index: 100;
   position: absolute;
+  background-blend-mode: color;
+  background-blend-mode: screen;
 }
 .ts-bg {
   background: rgba(255, 255, 255, 0.25);

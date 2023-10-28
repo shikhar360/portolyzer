@@ -22,7 +22,7 @@ const CircleMouseFollower = () => {
     };
   }, []);
 
-  return <div id="miniCircle" ref={circleRef}></div>;
+  return <div id="miniCircle" ref={circleRef} className='bg-invert w-40 bg-black/20'></div>;
 };
 
 export default CircleMouseFollower;

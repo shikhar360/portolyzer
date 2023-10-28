@@ -47,7 +47,7 @@ function NavbarFixed() {
           <Link href={"/"}>Home</Link>
         </li>
         <li className="px-2 text-lg hover:text-tertiary-color transition ease-in-out delay-80">
-          <Link href={"/portfolio"}>Portfolio</Link>
+          <Link href={"/dashboard"}>Portfolio</Link>
         </li>
         <li className="px-2 text-lg hover:text-tertiary-color transition ease-in-out delay-80">
           <Link href={"/"}>Trends</Link>
@@ -78,7 +78,7 @@ function NavbarScroll({ isScrolling }) {
           <Link href={"/"}>Home</Link>
         </li>
         <li className="px-2 text-black text-md">
-          <Link href={"/portfolio"}>Portfolio</Link>
+          <Link href={"/dashboard"}>Portfolio</Link>
         </li>
         <li className="px-2 text-black text-md">
           <Link href={"/"}>Trends</Link>
