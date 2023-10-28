@@ -167,12 +167,12 @@ const Dashboard = () => {
             <option value="324">zkSync</option>
           </select>
 
-          <Link
+          {/* <Link
             href={`/dashboard?a=${inputVal}&c=${selectedChain}`}
             className=" bg-lime-400 py-1.5 px-3 rounded-xl hover:bg-lime-300"
           >
             Search
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div>
