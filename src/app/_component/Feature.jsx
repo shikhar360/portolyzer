@@ -64,24 +64,25 @@ export default function Feature() {
       </div>
     </div>
   </div>
+  
 <div className="absolute inset-0 -z-10 boxpattern"></div>
     <div className=" m-14 text-center relative z-10">
     <h1 className=" text-3xl font-extrabold tracking-tight leading-none text-gray-800 md:text-xl lg:text-4xl ">Knowing your NFT & its trends is <br/><span className="underline underline-offset-8 decoration-secondary-color">just a click away </span>👆</h1>
         <div className="container relative">
             
-                <div className="card rotate-12 -right-4 absolute">
+                <div className="card rotate-12 -right-4 absolute transition ease-in-out delay-150 hover:-translate-y-8">
                   <div className="nft"><img src="https://lh3.googleusercontent.com/u-2FnHbaJ3U_KCDlmg2McX9Yfo7brsAzOffqihNXCGkHljA89SPPzwdjQiVSWcsvxCoj_ydBcDNCuZvHEekaYekaMEH4XX32k9US=w600"/></div>
                 </div>
-                <div className="card absolute">
+                <div className="card absolute transition ease-in-out delay-150 hover:-translate-y-12" >
                   <div className="nft"><img src="https://uploads-ssl.webflow.com/5da2323849811968156ebf6f/61ff1633ad518d1997f40f17_61bd49549ef6a8a59c837def_1_5AyYzOlGlv501PlJlIdZZQ.jpeg"/></div>
                 </div>
-                <div className="card -rotate-12 -left-4 absolute">
+                <div className="card -rotate-12 -left-4 absolute  transition ease-in-out delay-150 hover:-translate-y-10">
                   <div className="nft"><img src="https://beincrypto.com/wp-content/uploads/2022/05/1652308010103-850x850.jpg.optimal.jpg"/></div>
                 </div>
         </div>
         </div>
 
-        {/* Part 2 */}
+       
 </section>
   );
 }
