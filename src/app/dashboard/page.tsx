@@ -15,12 +15,12 @@ const Dashboard = () => {
   const [inputVal, setInputVal] = useState<string>("");
   const [bal, setBal] = useState<number | string>(0);
 
-  console.log({ addr, network });
+  // console.log({ addr, network });
 
   const [selectedChain, setSelectedChain] = useState<string>("");
   const [nftsData, setNftsData] = useState<any>("");
 
-  console.log(selectedChain);
+  // console.log(selectedChain);
 
   useEffect(() => {
     if (addr) {
@@ -54,8 +54,15 @@ const Dashboard = () => {
           }&address=${addr ? addr : inputVal}`,
           options
         );
+
+        const res2 = await fetch(`https://api.chainbase.online/v1/account/tokens?chain_id=${
+          network ? network : selectedChain
+        }&address=${addr ? addr : inputVal}`, options)
+
         const { data } = await res.json();
-        console.log(parseInt(data) / 10 ** 18);
+        const { data : erc20 } = await res2.json();
+        // console.log(parseInt(erc20) / 10 ** 18);
+        console.log(erc20);
         setBal((parseInt(data) / 10 ** 18).toFixed(2));
       } catch (err) {
         console.log(err);
@@ -65,36 +72,7 @@ const Dashboard = () => {
     getWalletData();
   }, [inputVal, selectedChain, network, addr, setChain, setEthAddr]);
 
-  useEffect(() => {
-    async function getNftData() {
-      try {
-        const options = {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            "x-api-key": process.env.NEXT_PUBLIC_CHAINBASE as string,
-          },
-        };
-
-        const res = await fetch(
-          `https://api.chainbase.online/v1/account/nfts?chain_id=${
-            network ? network : selectedChain
-          }&address=${addr ? addr : inputVal}&limit=100`,
-          options
-        );
-        const { data } = await res.json();
-        if(data){
-
-          setNftsData(data)
-        }
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-        return ""
-      }
-    }
-    getNftData();
-  }, [addr, inputVal, network, selectedChain]);
+ 
 
   // "0x176961411f7e0c150"
   function getTokenSymbol() {
@@ -137,10 +115,10 @@ const Dashboard = () => {
     // }
   }
 
-  console.log(checkImage("https://img-hester.xyz/image.png"));
+  // console.log(checkImage("https://img-hester.xyz/image.png"));
   return (
     <div
-      className={`flex flex-col items-center justify-start bg-white pt-28 text-black w-full min-h-screen `}
+      className={`flex flex-col items-center justify-start bg-white pt-28 text-black w-full  overflow-hidden min-h-screen `}
     >
       <div
         className={`min-w-[70%] flex items-center justify-center border-b border-black  py-2 px-4`}
@@ -184,12 +162,8 @@ const Dashboard = () => {
         {bal && bal} {selectedChain && getTokenSymbol()}
       </div>
 
-      <div className={`grid grid-cols-4 auto-rows-max w-full h-max`}>{nftsData && nftsData?.map((nft : any , idx : number)=><div key={idx}>
-        <img src={nft.image_uri } alt="nft" onLoad={(e)=>{
-         e.currentTarget.naturalWidth == 0 ? e.currentTarget.style.display = "hidden" : null
-        }} className={`  w-[10rem] h-[20rem]`}  /> 
-      </div>)}</div>
-      <div onClick={()=>checkImage("https://img-hester.xyz/image.png")}>0x15acfD6c3C7Ca01Fc3a11C6cB3155377984305f2</div>
+     
+      <div onClick={()=>checkImage("https://img-hester.xyz/image.png")}>0x15acfD6c3C7Ca01Fc3a11C6cB3155377984305f2  ------- 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</div>
     </div>
   );
 };
