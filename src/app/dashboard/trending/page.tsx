@@ -14,7 +14,7 @@ const Trending = () => {
      toast.error("Please add your Wallet Address and Chain")
     }
 
-      async function getNftData() {
+      async function getTrendingNfts() {
         try {
           if (!chain) return;
   
@@ -46,7 +46,7 @@ const Trending = () => {
           return ""
         }
       }
-      getNftData();
+      getTrendingNfts();
 
     
   },[chain, eth])

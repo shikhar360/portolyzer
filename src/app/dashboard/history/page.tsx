@@ -13,7 +13,7 @@ const History = () => {
      toast.error("Please add your Wallet Address and Chain")
     }
 
-      async function getNftData() {
+      async function getHistory() {
         try {
           if (!eth || !chain) return;
   
@@ -44,7 +44,7 @@ const History = () => {
           return ""
         }
       }
-      getNftData();
+      getHistory();
 
     
   },[chain, eth])
