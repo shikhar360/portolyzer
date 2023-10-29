@@ -1,5 +1,5 @@
 "use client";
-import Image from 'next/image'
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -39,7 +39,7 @@ function NavbarFixed() {
   return (
     <nav className="fixed z-20 flex justify-between w-full px-8 py-4  ts-bg2 rounded-b-xl ">
       <div className="flex items-center gap-2 text-black">
-        <Image src="/images/analytics.png" alt="logo" width={35} height={35}/>
+        <Image src="/images/analytics.png" alt="logo" width={35} height={35} />
         <h1 className="text-xl text-black font-semibold">Portolyzer</h1>
       </div>
       <ul className="flex items-center text-black">

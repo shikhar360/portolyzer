@@ -4,11 +4,14 @@ import React, { useEffect, useMemo, useState } from "react";
 import useDebounce from "./useDebounce";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useStore } from "../store/Store";
+
 const Dashboard = () => {
   const searchParams = useSearchParams();
   const addr = searchParams.get("a");
   const network = searchParams.get("c");
-
+  const setChain = useStore(state => state.setChain)
+  const setEthAddr = useStore(state => state.setEthAddr)
   const [inputVal, setInputVal] = useState<string>("");
   const [bal, setBal] = useState<number | string>(0);
 
@@ -33,7 +36,9 @@ const Dashboard = () => {
     async function getWalletData() {
       try {
         if (!inputVal || !selectedChain) return;
-        console.log(inputVal);
+        // console.log(inputVal);
+        setChain(selectedChain)
+        setEthAddr(inputVal)
 
         const options = {
           method: "GET",
@@ -58,7 +63,7 @@ const Dashboard = () => {
     }
 
     getWalletData();
-  }, [inputVal, selectedChain, network, addr]);
+  }, [inputVal, selectedChain, network, addr, setChain, setEthAddr]);
 
   useEffect(() => {
     async function getNftData() {
@@ -135,7 +140,7 @@ const Dashboard = () => {
   console.log(checkImage("https://img-hester.xyz/image.png"));
   return (
     <div
-      className={`flex flex-col items-center justify-start bg-white pt-24 text-black w-full min-h-screen `}
+      className={`flex flex-col items-center justify-start bg-white pt-28 text-black w-full min-h-screen `}
     >
       <div
         className={`min-w-[70%] flex items-center justify-center border-b border-black  py-2 px-4`}

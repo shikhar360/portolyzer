@@ -6,7 +6,7 @@ import './globals.css'
 import Navbar from './_component/Navbar'
 import Footer from './_component/Footer'
 import CircleMouseFollwer from "@/app/_component/CircleMouseFollower";
-//
+import 'react-toastify/dist/ReactToastify.css';
 const rubik = Rubik({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
