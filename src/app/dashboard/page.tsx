@@ -89,7 +89,7 @@ const Dashboard = () => {
       {erc20 ? erc20.map((token : any , idx: number) =><div key={idx}  className={`w-[80%] mx-auto `}>
         <p className={`text-xs truncate text-black/50`}>{token?.symbol.toUpperCase()}</p>
         <p className={`text-base truncate text-black/70`}>{(parseInt(token?.balance)/ 10**token.decimals).toFixed(2).toString()}</p>
-      </div>) : <div className={`text-xl font-mono`}>No Balance in Erc20 🥲</div>}
+      </div>) : <div className={`text-xl font-mono`}>No Balance in Erc20 🥲<br/> or <br/> Test : 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</div>}
         </div>
 
      { erc20 && <div className={`flex items-center justify-center gap-4  mx-auto mt-7 `}>
