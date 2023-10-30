@@ -15,6 +15,10 @@
   --secondarybutton-color: #5f67f4;
   --buttonhover-color: #2630f5;
   --text-rgb: 20, 20, 20;
+  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--tertiary-color) / 0.36),
+    0.8px 1.6px 2px -0.8px hsl(var(--tertiary-color) / 0.36),
+    2.1px 4.1px 5.2px -1.7px hsl(var(--tertiary-color) / 0.36),
+    5px 10px 12.6px -2.5px hsl(var(--tertiary-color) / 0.36);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -330,4 +334,22 @@ button:hover .button-text {
     width: 100%;
     transform: translate(1rem, 0);
   }
+}
+/* Custom scrollbar  */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #a9aaad #d1d5db;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #d1d5db;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #a9aaad;
+  border-radius: 5px;
 }
