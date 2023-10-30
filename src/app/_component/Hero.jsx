@@ -11,8 +11,7 @@ export default function Hero() {
       <p className="mb-8 text-lg font-normal text-gray-700 lg:text-xl sm:px-16 xl:px-48">
         Get your portfolio analytics in just one click
         <br />
-        ...find your top performing assets, trending cryptos, NFT details at one
-        stop shop.{" "}
+        ...find your top performing assets, trending cryptos, NFT details at one place.{" "}
       </p>
       <div>
         <div className="btn-container">
@@ -20,7 +19,9 @@ export default function Hero() {
             <span className="circle" aria-hidden="true">
               <span className="icon arrow"></span>
             </span>
+            <Link href={"/dashboard"}>
             <span className="button-text">Get Started</span>
+            </Link>
           </button>
         </div>
       </div>
