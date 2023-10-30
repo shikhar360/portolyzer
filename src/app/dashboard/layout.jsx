@@ -4,6 +4,7 @@ import Sidebar from "@/app/_component/Sidebar";
 import Link from "next/link";
 import { useStore } from "../store/Store";
 import Image from "next/image";
+import {usePathname} from "next/navigation"
 import { useState } from "react";
 import { ToastContainer, toast , Flip } from "react-toastify";
 export default function DashboardLayout({ children }) {
@@ -12,6 +13,9 @@ export default function DashboardLayout({ children }) {
   const setChain = useStore((state) => state.setChain);
   const setEthAddr = useStore((state) => state.setEthAddr);
   const [active, setActive] = useState(true);
+
+  const pathname = usePathname();
+
   return (
     <section
       className={`flex items-start overflow-hidden relative justify-center`}
@@ -25,7 +29,7 @@ export default function DashboardLayout({ children }) {
           <ul className="space-y-1.5">
             <Link
               href={`/dashboard`}
-              className={`cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white-300`}
+              className={` ${pathname === `/dashboard` ? 'bg-gray-800' : ""} cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white-300`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +49,7 @@ export default function DashboardLayout({ children }) {
             </Link>
             <Link
               href={`/dashboard/nft`}
-              className={`cursor-pointer  flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white-300`}
+              className={`${pathname === `/dashboard/nft` ? 'bg-gray-800' : ""} cursor-pointer  flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white-300`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +89,7 @@ export default function DashboardLayout({ children }) {
             </Link>
             <Link
               href={`/dashboard/history`}
-              className={`cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white-300 `}
+              className={`${pathname === `/dashboard/history` ? 'bg-gray-800' : ""} cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white-300 `}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +108,7 @@ export default function DashboardLayout({ children }) {
             </Link>
             <Link
               href={`/dashboard/trending`}
-              className={`cursor-pointer  flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white-300`}
+              className={`${pathname === `/dashboard/trending` ? 'bg-gray-800' : ""} cursor-pointer  flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white-300`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

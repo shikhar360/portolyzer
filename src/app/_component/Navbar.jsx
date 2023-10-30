@@ -50,14 +50,14 @@ function NavbarFixed() {
           <Link href={"/dashboard"}>Dashboard</Link>
         </li>
         <li className="px-2 text-lg hover:text-tertiary-color transition ease-in-out delay-80">
-          <Link href={"/"}>Trends</Link>
+          <Link href={"/dashboard/trending"}>Trends</Link>
         </li>
         <li className="px-2 text-lg hover:text-tertiary-color transition ease-in-out delay-80">
-          <Link href={"/"}>About</Link>
+          <Link href={"/about"}>About</Link>
         </li>
       </ul>
       <div className="px-4 py-3 ml-2 text-white bg-tertiary-color rounded-3xl text-md hover:bg-buttonhover-color items-center">
-        <Link href={"/"}>Login</Link>
+        <Link href={"/login"}>Login</Link>
       </div>
     </nav>
   );
@@ -81,13 +81,13 @@ function NavbarScroll({ isScrolling }) {
           <Link href={"/dashboard"}>Dashboard</Link>
         </li>
         <li className="px-2 text-black text-md">
-          <Link href={"/"}>Trends</Link>
+          <Link href={"/dashboard/trending"}>Trends</Link>
         </li>
         <li className="px-2 text-black text-md">
-          <Link href={"/"}>About</Link>
+          <Link href={"/about"}>About</Link>
         </li>
         <li className="px-4 py-2 ml-2 text-white bg-tertiary-color rounded-full text-md ">
-          <Link href={"/"}>Login</Link>
+          <Link href={"/login"}>Login</Link>
         </li>
       </ul>
     </motion.nav>

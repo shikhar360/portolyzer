@@ -15,10 +15,6 @@
   --secondarybutton-color: #5f67f4;
   --buttonhover-color: #2630f5;
   --text-rgb: 20, 20, 20;
-  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--tertiary-color) / 0.36),
-    0.8px 1.6px 2px -0.8px hsl(var(--tertiary-color) / 0.36),
-    2.1px 4.1px 5.2px -1.7px hsl(var(--tertiary-color) / 0.36),
-    5px 10px 12.6px -2.5px hsl(var(--tertiary-color) / 0.36);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -31,12 +27,6 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
 }
 
 #miniCircle {
@@ -252,7 +242,7 @@ button.learn-more {
 }
 /* Circle styles */
 button.learn-more .circle {
-  animation: grow 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  animation: grow;
   position: relative;
   display: block;
   margin: 0;
@@ -265,7 +255,7 @@ button.learn-more .circle {
 
 /* Icon styles */
 button.learn-more .circle .icon {
-  animation: grow 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  animation: grow;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -275,7 +265,7 @@ button.learn-more .circle .icon {
 }
 /* Arrow icon styles */
 button.learn-more .circle .icon.arrow {
-  animation: grow 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  animation: grow;
   left: 0.625rem;
   width: 1.125rem;
   height: 0.125rem;
@@ -296,7 +286,7 @@ button.learn-more .circle .icon.arrow::before {
 }
 /* Button text styles */
 button.learn-more .button-text {
-  animation: grow 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  animation: grow;
   position: absolute;
   top: 0;
   left: 0;
