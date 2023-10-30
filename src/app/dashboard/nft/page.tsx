@@ -2,11 +2,12 @@
 "use client"
 import { useStore } from '@/app/store/Store';
 import React, { useEffect, useState } from 'react'
-
+import ImageFallback from '@/app/_component/ImageFallback';
 const Nft = () => {
   const eth =  useStore(state => state.ethAddr)
   const chain =  useStore(state => state.chain)
   const [nftsData, setNftsData] = useState<any>("");
+  const [cpage, setCPage] = useState<number >(1);
   useEffect(() => {
     async function getNftData() {
       try {
@@ -19,11 +20,11 @@ const Nft = () => {
             "x-api-key": process.env.NEXT_PUBLIC_CHAINBASE as string,
           },
         };
-
+   //0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
         const res = await fetch(
           `https://api.chainbase.online/v1/account/nfts?chain_id=${
-            chain ? chain : null
-          }&address=${eth ? eth : null}&limit=100`,
+            chain
+          }&address=${eth}&limit=40&page=${cpage}`,
           options
         );
         const { data } = await res.json();
@@ -38,16 +39,27 @@ const Nft = () => {
       }
     }
     getNftData();
-  }, [chain, eth]);
+  }, [chain, eth , cpage]);
 
   return (
-    <div className={`max-h-screen overflow-scroll `}>
+    <div className={`min-h-screen overflow-hidden `}>
 
-    <div className={`grid grid-cols-4 auto-rows-max w-full h-max`}>{nftsData && nftsData?.map((nft : any , idx : number)=><div key={idx}>
-    <img src={nft.image_uri } alt="nft" onLoad={(e)=>{
-      e.currentTarget.naturalWidth == 0 ? e.currentTarget.style.display = "hidden" : null
-    }} className={`  w-[10rem] h-[20rem]`}  /> 
-  </div>)}</div>
+    <div className={`grid gap-y-4 grid-cols-4 auto-rows-max w-full h-max`}>{nftsData && nftsData?.map((nft : any , idx : number)=><div key={idx} className={`mx-auto w-[80%] min-h-max flex-1 flex flex-col items-start justify-start`}>
+    <ImageFallback src={nft.image_uri.replace("ipfs://", "https://ipfs.io/ipfs/") }  className={`  w-full h-[20rem]`}  /> 
+    <div className={`text-xs flex items-center w-full justify-between`} >
+      <p  className={`py-1 px-2 rounded-full bg-black/5 `}>{nft.erc_type}</p>
+      <p>{nft.symbol}</p>
+      </div>
+  </div>)}
+  </div>
+
+
+  { nftsData && <div className={`flex items-center justify-center gap-4  mx-auto mt-7 mb-[30%] `}>
+      <img className={`w-7 cursor-pointer `} onClick={()=>setCPage(prev =>  prev > 1 ? prev- 1 : prev )} alt="img" src="https://img.icons8.com/external-dashed-line-kawalan-studio/100/external-minus-shape-dashed-line-kawalan-studio.png" />
+      <div className={`text-xl font-mono`} >{cpage}</div>
+      <img className={`w-7 cursor-pointer  `} onClick={()=>setCPage(prev =>  prev + 1 )}  alt="img" src="https://img.icons8.com/pulsar-line/48/000000/plus-math.png"/>
+      
+      </div>}
     </div>
   )
 }

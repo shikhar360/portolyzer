@@ -37,7 +37,7 @@ export default function Navbar() {
 
 function NavbarFixed() {
   return (
-    <nav className="fixed z-20 flex justify-between w-full px-8 py-4  ts-bg2 rounded-b-xl ">
+    <nav className="fixed z-50 flex justify-between w-full px-8 py-4  ts-bg2 rounded-b-xl ">
       <div className="flex items-center gap-2 text-black">
         <Image src="/images/analytics.png" alt="logo" width={35} height={35} />
         <h1 className="text-xl text-black font-semibold">Portolyzer</h1>
@@ -47,7 +47,7 @@ function NavbarFixed() {
           <Link href={"/"}>Home</Link>
         </li>
         <li className="px-2 text-lg hover:text-tertiary-color transition ease-in-out delay-80">
-          <Link href={"/dashboard"}>Portfolio</Link>
+          <Link href={"/dashboard"}>Dashboard</Link>
         </li>
         <li className="px-2 text-lg hover:text-tertiary-color transition ease-in-out delay-80">
           <Link href={"/"}>Trends</Link>
@@ -71,14 +71,14 @@ function NavbarScroll({ isScrolling }) {
       animate={isScrolling ? "animate" : "initial"}
       exit="exit"
       variants={NavAnimations}
-      className="fixed z-20 flex justify-between px-4 py-2 rounded-full ts-bg left-1/2 top-5"
+      className="fixed z-50 flex justify-between px-4 py-2 rounded-full ts-bg left-1/2 top-5"
     >
       <ul className="flex items-center">
         <li className="px-2 text-black text-md">
           <Link href={"/"}>Home</Link>
         </li>
         <li className="px-2 text-black text-md">
-          <Link href={"/dashboard"}>Portfolio</Link>
+          <Link href={"/dashboard"}>Dashboard</Link>
         </li>
         <li className="px-2 text-black text-md">
           <Link href={"/"}>Trends</Link>
