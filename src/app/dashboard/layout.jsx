@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useStore } from "../store/Store";
 import Image from "next/image";
 import { useState } from "react";
+import { ToastContainer, toast , Flip } from "react-toastify";
 export default function DashboardLayout({ children }) {
   const eth = useStore((state) => state.ethAddr);
   const chain = useStore((state) => state.chain);
@@ -111,20 +112,20 @@ export default function DashboardLayout({ children }) {
           className={`flex ${
             active
               ? "w-[60%] left-[60%]"
-              : "w-20 delay-100 items-center justify-center left-[25%] py-2  "
-          }  overflow-hidden transition-all duration-200 ease-linear   border rounded-full fixed bg-white/20 backdrop-blur-xl  -translate-x-1/2 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1`}
+              : "w-20 delay-100 items-center justify-center left-[25%] py-1  "
+          }  overflow-hidden transition-all duration-200 ease-linear   border rounded-full fixed bg-white/20 backdrop-blur-xl   z-20 -translate-x-1/2 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1`}
         >
           <img
             src="https://img.icons8.com/external-bearicons-flat-bearicons/100/external-Search-happiness-bearicons-flat-bearicons.png"
             alt="external-search-video-interface-inkubators-gradient-inkubators"
-            className={`w-24 my-auto mx-auto h-10   z-20 rounded-none  ${
-              active ? " translate-x-0 py-1" : "translate-x-1/2 delay-100"
+            className={`w-24 my-auto mx-auto h-10  z-20 rounded-none  ${
+              active ? " translate-x-0 " : "translate-x-1/2  delay-100"
             }`}
             onClick={() => setActive((prev) => !prev)}
           />
           <div
             className={`  ${
-              active ? " translate-x-0" : "-translate-x-[100%]   "
+              active ? " translate-x-0" : "-translate-x-[200%]   "
             } w-full transition-all duration-500 ease-linear flex items-center  overflow-hidden justify-center    py-2 px-4`}
           >
             <input
@@ -143,7 +144,7 @@ export default function DashboardLayout({ children }) {
               <select
                 value={chain}
                 onChange={(e) => setChain(e.target.value)}
-                className={`  bg-transparent px-4  py-2  mx-1.5 rounded`}
+                className={` select-none bg-transparent px-4  py-2  mx-1.5 rounded`}
               >
                 <option value="" disabled>
                   Select Chain
@@ -162,6 +163,12 @@ export default function DashboardLayout({ children }) {
         </div>
         {children}
       </div>
+      <ToastContainer
+    position="bottom-right"
+    autoClose={3000}
+    hideProgressBar={true}
+    transition={Flip}
+    />
     </section>
   );
 }

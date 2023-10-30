@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useStore } from "../store/Store";
 
+import { ToastContainer, toast , Flip } from "react-toastify";
 const Dashboard = () => {
   const eth = useStore((state) => state.ethAddr);
   const chain = useStore((state) => state.chain);
@@ -13,14 +14,17 @@ const Dashboard = () => {
  const [bal, setBal] = useState<number | string>(0);
  const [erc20, setErc20] = useState<any>('');
  const [cpage, setCPage] = useState<number >(1);
- 
 
   // console.log(selectedChain);
 
   useEffect(() => {
     async function getWalletData() {
       try {
-        if (!eth || !chain) return;
+        if(!eth || !chain){
+          toast.error("Please add your Wallet Address and Chain")
+          return
+         }
+
         // console.log(inputVal);
 
         const options = {
@@ -94,6 +98,7 @@ const Dashboard = () => {
       <img className={`w-7 cursor-pointer  `} onClick={()=>setCPage(prev =>  prev + 1 )}  alt="img" src="https://img.icons8.com/pulsar-line/48/000000/plus-math.png"/>
       
       </div>}
+     
     </div>
   );
 };

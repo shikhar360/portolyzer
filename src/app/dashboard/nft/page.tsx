@@ -3,6 +3,7 @@
 import { useStore } from '@/app/store/Store';
 import React, { useEffect, useState } from 'react'
 import ImageFallback from '@/app/_component/ImageFallback';
+import { ToastContainer, toast , Flip } from "react-toastify";
 const Nft = () => {
   const eth =  useStore(state => state.ethAddr)
   const chain =  useStore(state => state.chain)
@@ -11,7 +12,10 @@ const Nft = () => {
   useEffect(() => {
     async function getNftData() {
       try {
-        if (!eth || !chain) return;
+        if(!eth || !chain){
+          toast.error("Please add your Wallet Address and Chain")
+          return
+         }
 
         const options = {
           method: "GET",
@@ -44,12 +48,15 @@ const Nft = () => {
   return (
     <div className={`min-h-screen overflow-hidden `}>
 
-    <div className={`grid gap-y-4 grid-cols-4 auto-rows-max w-full h-max`}>{nftsData && nftsData?.map((nft : any , idx : number)=><div key={idx} className={`mx-auto w-[80%] min-h-max flex-1 flex flex-col items-start justify-start`}>
-    <ImageFallback src={nft.image_uri.replace("ipfs://", "https://ipfs.io/ipfs/") }  className={`  w-full h-[20rem]`}  /> 
-    <div className={`text-xs flex items-center w-full justify-between`} >
-      <p  className={`py-1 px-2 rounded-full bg-black/5 `}>{nft.erc_type}</p>
-      <p>{nft.symbol}</p>
+    <div className={`grid gap-y-4 grid-cols-4 auto-rows-max w-full h-max`}>
+      {nftsData && nftsData?.map((nft : any , idx : number)=><div key={idx} className={`mx-auto w-[80%] min-h-[18rem]  flex-1 flex flex-col items-start justify-start`}>
+    <ImageFallback src={nft.image_uri.replace("ipfs://", "https://ipfs.io/ipfs/") }  className={`  w-full `}  /> 
+    <div className={`text-xs flex items-center w-full justify-between mt-4 mb-3 px-2`} >
+      <p  className={`py-1 px-2 rounded-full bg-black/5   `}>{nft.erc_type}</p>
+      <p className={`text-black/60 `}>{nft.symbol}</p>
       </div>
+      <p className={`text-start px-2 w-full `}>{nft.name.toUpperCase()}</p>
+
   </div>)}
   </div>
 
@@ -60,6 +67,7 @@ const Nft = () => {
       <img className={`w-7 cursor-pointer  `} onClick={()=>setCPage(prev =>  prev + 1 )}  alt="img" src="https://img.icons8.com/pulsar-line/48/000000/plus-math.png"/>
       
       </div>}
+    
     </div>
   )
 }
