@@ -1,7 +1,12 @@
 
 # Portolyzer
 
-Welcome to the Portolyzer, where you can manage and see your Crypto Portfolio at a click. This project was created for the Chainbase Hackathon, and it's designed to empower both seasoned crypto enthusiasts and newcomers to the space with the tools they need to manage their digital assets effectively.
+Website Link : [https://chainbase-portolyzer.vercel.app/](https://chainbase-portolyzer.vercel.app/)
+
+Video Demo : [https://youtu.be/AQabyLwu0R8?feature=shared](https://youtu.be/AQabyLwu0R8?feature=shared)
+
+
+Welcome to the Portolyzer, where you can manage and see your Crypto Portfolio at few click. Now you dont need to go any explorer to see all the transactions and No need to switch to explorers to check transactions from other chain. This project was created for the Chainbase Hackathon, and it's designed to empower both seasoned crypto enthusiasts and newcomers to the space with the tools they need to manage their digital assets effectively.
 
 ## Features
 
@@ -13,6 +18,7 @@ Welcome to the Portolyzer, where you can manage and see your Crypto Portfolio at
 
 - Trending NFT Collections:- Discover the latest trends in the NFT space with our trending NFT collections section.
 
+- Historic Token Prices ;- You will be able to see the historic token prices for the contract address you have provided or the native token as well
 
 ## Tech Stack
 
@@ -22,20 +28,36 @@ Built with:- Next.js, Tailwind CSS, Framer Motion & Zustand for state management
 #### Chainbase API -
 The project uses Chainbase API, which provides accurate and up-to-date data for your crypto needs. This integration enables real-time balance tracking, transaction history, and access to trending NFT collections, making it a reliable and informative tool for all crypto enthusiasts.
 
-([getNFTCollectionTrending]( https://docs.chainbase.com/reference/getnftcollectiontrending
-) )
+[getNFTCollectionTrending](https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/trending/page.tsx) 
+
 Line 17-49 --> https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/trending/page.tsx
 
-([getaccountnfts](https://docs.chainbase.com/reference/getaccountnfts)) Line :- 12-42 --> https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/nft/page.tsx
+---
+[getaccountnfts](https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/nft/page.tsx)
 
+ Line :- 12-42 --> https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/nft/page.tsx
 
-([getaccountbalance](https://docs.chainbase.com/reference/getaccountbalance)) &( [getaccounttokens](https://docs.chainbase.com/reference/getaccounttokens)) Line :- 21-54 --> https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/page.tsx
+---
 
+([getaccountbalance](https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/page.tsx)) &
 
+( [getaccounttokens](https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/page.tsx))
 
-([getaccounttxs](https://docs.chainbase.com/reference/getaccounttxs)) Line 25-59 --> https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/history/page.tsx
+ Line :- 21-54 --> https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/page.tsx
 
+---
 
+[getaccounttxs](https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/history/page.tsx)
+
+ Line 25-59 --> https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/history/page.tsx
+
+---
+
+[tokenHistory](https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/token_history/page.tsx)
+
+ Line 25-59 --> https://github.com/shikhar360/portolyzer/blob/main/src/app/dashboard/token_history/page.tsx
+
+---
 ## Getting Started
 
 First, run the development server:
