@@ -9,6 +9,7 @@ interface IStore {
   setToUnix : (to: number) => void
   setEthAddr : (addr: string) => void
   setChain : (chain : string) => void
+  getHistory : () => void
 }
 
 
@@ -22,5 +23,6 @@ export const useStore = create<IStore>((set)=>(
     setToUnix : (to : number)=>set((state) => ({ ...state , toUnix : to})),
     setEthAddr : (addr : string)=>set((state) => ({ ...state , ethAddr : addr})),
     setChain : (chain : string)=>set((state) => ({ ...state , chain : chain})),
+    getHistory : ()=> {},
   }
 ))

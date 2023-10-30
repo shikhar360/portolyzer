@@ -47,8 +47,8 @@ const DateComponent = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='flex items-center justify-center'>
+      <form onSubmit={handleSubmit}  >
         <div>
           <label>From Date:</label>
           <input type="date" value={fromDate} onChange={handleFromDateChange} />
