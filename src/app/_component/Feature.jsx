@@ -27,7 +27,7 @@ export default function Feature() {
             <div className="space-y-6 lg:space-y-10">
               <div className="flex">
                 <svg
-                  class="flex-shrink-0 mt-2 h-8 w-8 text-gray-800"
+                  className="flex-shrink-0 mt-2 h-8 w-8 text-gray-800"
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
@@ -51,7 +51,7 @@ export default function Feature() {
 
               <div className="flex">
                 <svg
-                  class="flex-shrink-0 mt-2 h-8 w-8 text-gray-800 "
+                  className="flex-shrink-0 mt-2 h-8 w-8 text-gray-800 "
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"

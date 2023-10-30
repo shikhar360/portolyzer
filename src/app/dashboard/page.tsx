@@ -7,38 +7,21 @@ import Link from "next/link";
 import { useStore } from "../store/Store";
 
 const Dashboard = () => {
-  const searchParams = useSearchParams();
-  const addr = searchParams.get("a");
-  const network = searchParams.get("c");
-  const setChain = useStore(state => state.setChain)
-  const setEthAddr = useStore(state => state.setEthAddr)
-  const [inputVal, setInputVal] = useState<string>("");
-  const [bal, setBal] = useState<number | string>(0);
-
+  const eth = useStore((state) => state.ethAddr);
+  const chain = useStore((state) => state.chain);
   // console.log({ addr, network });
-
-  const [selectedChain, setSelectedChain] = useState<string>("");
-  const [nftsData, setNftsData] = useState<any>("");
+ const [bal, setBal] = useState<number | string>(0);
+ const [erc20, setErc20] = useState<any>('');
+ const [cpage, setCPage] = useState<number >(1);
+ 
 
   // console.log(selectedChain);
 
   useEffect(() => {
-    if (addr) {
-      setInputVal(addr);
-    }
-    if (network) {
-      setSelectedChain(network);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     async function getWalletData() {
       try {
-        if (!inputVal || !selectedChain) return;
+        if (!eth || !chain) return;
         // console.log(inputVal);
-        setChain(selectedChain)
-        setEthAddr(inputVal)
 
         const options = {
           method: "GET",
@@ -49,20 +32,19 @@ const Dashboard = () => {
         };
 
         const res = await fetch(
-          `https://api.chainbase.online/v1/account/balance?chain_id=${
-            network ? network : selectedChain
-          }&address=${addr ? addr : inputVal}`,
+          `https://api.chainbase.online/v1/account/balance?chain_id=${chain}&address=${eth}`,
           options
         );
 
-        const res2 = await fetch(`https://api.chainbase.online/v1/account/tokens?chain_id=${
-          network ? network : selectedChain
-        }&address=${addr ? addr : inputVal}`, options)
+        const res2 = await fetch(
+          `https://api.chainbase.online/v1/account/tokens?chain_id=${chain}&address=${eth}&limit=20&page=${cpage}`,
+          options
+        );
 
         const { data } = await res.json();
-        const { data : erc20 } = await res2.json();
+        const { data: erc20Data } = await res2.json();
         // console.log(parseInt(erc20) / 10 ** 18);
-        console.log(erc20);
+        setErc20(erc20Data);
         setBal((parseInt(data) / 10 ** 18).toFixed(2));
       } catch (err) {
         console.log(err);
@@ -70,103 +52,55 @@ const Dashboard = () => {
     }
 
     getWalletData();
-  }, [inputVal, selectedChain, network, addr, setChain, setEthAddr]);
-
- 
+  }, [chain, cpage, eth]);
 
   // "0x176961411f7e0c150"
   function getTokenSymbol() {
-    if (selectedChain === "1") return "ETH";
-    if (selectedChain === "137") return "MATIC";
-    if (selectedChain === "56") return "BSC";
-    if (selectedChain === "43114") return "AVAX";
-    if (selectedChain === "42161") return "ARB";
-    if (selectedChain === "10") return "OPT";
-    if (selectedChain === "8453") return "BASE";
-    if (selectedChain === "324") return "ZKS";
+    if(!chain)return
+    if (chain === "1") return "ETH";
+    if (chain === "137") return "MATIC";
+    if (chain === "56") return "BSC";
+    if (chain === "43114") return "AVAX";
+    if (chain === "42161") return "ARB";
+    if (chain === "10") return "OPT";
+    if (chain === "8453") return "BASE";
+    if (chain === "324") return "ZKS";
   }
 
-   function checkImage(url : string) {
-    // try {
-  
-    //   return new Promise((resolve, reject) => {
-    //     let imageData = new Image();
-    //     imageData.src = url;
-    //     imageData.onload = function () {
-    //         resolve(true);
-    //         return true
-    //     };
-    //     imageData.onerror = function () {
-    //         return reject(false)
-    //         return false
-    //     };
-    //     // not really sure why you have this here, but ok
-    //   });
-    // } catch (err) {
-    //   const error = {
-    //     code: 'Fetching image',
-    //     message: 'Something went wrong.',
-    //     rawError: err,
-    //   }
-    //   return false
-    //   // const isError = true
-    //   // return isError
-    //   console.log(error)
-    // }
-  }
-
-  // console.log(checkImage("https://img-hester.xyz/image.png"));
+  console.log(erc20);
   return (
     <div
-      className={`flex flex-col items-center justify-start bg-white pt-28 text-black w-full  overflow-hidden min-h-screen `}
+      className={`flex flex-col items-start  justify-start bg-white p-20  text-black w-full min-h-screen `}
     >
-      <div
-        className={`min-w-[70%] flex items-center justify-center border-b border-black  py-2 px-4`}
-      >
-        <input
-          value={addr ? addr : inputVal}
-          type="text"
-          onChange={(e) => setInputVal(e.target.value)}
-          className={`w-full py-2 px-4 text-sm bg-transparent rounded-md placeholder:text-black/40 focus:outline-none  `}
-          placeholder="0xabcdEnterYourWalletAddress"
-        />
+      
+      <div className={`w-max bg-black/5 rounded-xl py-3 px-4 `}>
+        <p className={`text-sm font-mono text-black/60 mb-2  `}>Your Balance </p>
+        <p className={`text-3xl font-mono  `} > {bal == 0 ? "Enter Wallet Address" : bal} {getTokenSymbol()} 🤑</p>
+      </div>
+      
+      <p className={`text-xl  text-black  mt-6 mx-4 mb-5 `}>Other Tokens {"   "}&darr;</p>
+      
 
-        <div className=" w-[30%] flex items-center justify-center">
-          <select
-            value={network ? network : selectedChain}
-            onChange={(e) => setSelectedChain(e.target.value)}
-            className=" px-4 py-2  mx-1.5 rounded"
-          >
-            <option value="" disabled>
-              Select Chain
-            </option>
-            <option value="1">Ethereum</option>
-            <option value="137">Polygon</option>
-            <option value="56">BSC</option>
-            <option value="43114">Avalanche</option>
-            <option value="42161">Arbitrum One</option>
-            <option value="10">Optimism</option>
-            <option value="8453">Base</option>
-            <option value="324">zkSync</option>
-          </select>
-
-          {/* <Link
-            href={`/dashboard?a=${inputVal}&c=${selectedChain}`}
-            className=" bg-lime-400 py-1.5 px-3 rounded-xl hover:bg-lime-300"
-          >
-            Search
-          </Link> */}
+        <div className={`grid grid-cols-4 auto-rows-max w-full gap-y-4 `}>
+      {erc20 ? erc20.map((token : any , idx: number) =><div key={idx}  className={`w-[80%] mx-auto `}>
+        <p className={`text-xs truncate text-black/50`}>{token?.symbol.toUpperCase()}</p>
+        <p className={`text-base truncate text-black/70`}>{(parseInt(token?.balance)/ 10**token.decimals).toFixed(2).toString()}</p>
+      </div>) : <div className={`text-xl font-mono`}>No Balance in Erc20 🥲</div>}
         </div>
-      </div>
-      <div>
-        {bal && bal} {selectedChain && getTokenSymbol()}
-      </div>
 
-     
-      <div onClick={()=>checkImage("https://img-hester.xyz/image.png")}>0x15acfD6c3C7Ca01Fc3a11C6cB3155377984305f2  ------- 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</div>
+     { erc20 && <div className={`flex items-center justify-center gap-4  mx-auto mt-7 `}>
+      <img className={`w-7 cursor-pointer `} onClick={()=>setCPage(prev =>  prev > 1 ? prev- 1 : prev )} alt="img" src="https://img.icons8.com/external-dashed-line-kawalan-studio/100/external-minus-shape-dashed-line-kawalan-studio.png" />
+      <div className={`text-xl font-mono`} >{cpage}</div>
+      <img className={`w-7 cursor-pointer  `} onClick={()=>setCPage(prev =>  prev + 1 )}  alt="img" src="https://img.icons8.com/pulsar-line/48/000000/plus-math.png"/>
+      
+      </div>}
     </div>
   );
 };
 
 export default Dashboard;
 // <div className={``} ></div>
+{/* <div>
+0x15acfD6c3C7Ca01Fc3a11C6cB3155377984305f2 -------
+0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+</div> */}

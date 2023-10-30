@@ -1,10 +1,21 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Sidebar from "@/app/_component/Sidebar";
 import Link from "next/link";
+import { useStore } from "../store/Store";
+import Image from "next/image";
+import { useState } from "react";
 export default function DashboardLayout({ children }) {
+  const eth = useStore((state) => state.ethAddr);
+  const chain = useStore((state) => state.chain);
+  const setChain = useStore((state) => state.setChain);
+  const setEthAddr = useStore((state) => state.setEthAddr);
+  const [active, setActive] = useState(true);
   return (
-    <section className={`flex items-start justify-center`}>
-      <div className=" w-[20%] min-h-screen bg-[#191E21] border-r border-[#191E21] pt-32 pb-10 px-3 ">
+    <section
+      className={`flex items-start overflow-hidden relative justify-center`}
+    >
+      <div className=" w-[20%] min-h-screen bg-[#191E21] border-r border-[#191E21] pt-32 pb-10 px-3  fixed left-0 top-0">
         <div className="px-6">
           <a className="text-xl font-semibold text-white">Dashboard</a>
         </div>
@@ -93,7 +104,64 @@ export default function DashboardLayout({ children }) {
           </ul>
         </nav>
       </div>
-      <div className={`w-[80%]`}>{children}</div>
+      <div
+        className={`w-[80%] ml-[20%] flex flex-col min-h-screen relative pt-28`}
+      >
+        <div
+          className={`flex ${
+            active
+              ? "w-[60%] left-[60%]"
+              : "w-20 delay-100 items-center justify-center left-[25%] py-2  "
+          }  overflow-hidden transition-all duration-200 ease-linear   border rounded-full fixed bg-white/20 backdrop-blur-xl  -translate-x-1/2 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1`}
+        >
+          <img
+            src="https://img.icons8.com/external-bearicons-flat-bearicons/100/external-Search-happiness-bearicons-flat-bearicons.png"
+            alt="external-search-video-interface-inkubators-gradient-inkubators"
+            className={`w-24 my-auto mx-auto h-10   z-20 rounded-none  ${
+              active ? " translate-x-0 py-1" : "translate-x-1/2 delay-100"
+            }`}
+            onClick={() => setActive((prev) => !prev)}
+          />
+          <div
+            className={`  ${
+              active ? " translate-x-0" : "-translate-x-[100%]   "
+            } w-full transition-all duration-500 ease-linear flex items-center  overflow-hidden justify-center    py-2 px-4`}
+          >
+            <input
+              value={eth}
+              type="text"
+              onChange={(e) => setEthAddr(e.target.value)}
+              className={`w-full py-2 px-4 text-sm bg-transparent rounded-md placeholder:text-black/40 focus:outline-none transition-all duration-200 ease-linear`}
+              placeholder="0xabcdEnterYourWalletAddress"
+            />
+
+            <div
+              className={` w-[35%] flex items-center ${
+                active ? "translate-x-0" : "-translate-x-[160%] scale-0  "
+              }  transition-all duration-200 ease-linear  justify-center`}
+            >
+              <select
+                value={chain}
+                onChange={(e) => setChain(e.target.value)}
+                className={`  bg-transparent px-4  py-2  mx-1.5 rounded`}
+              >
+                <option value="" disabled>
+                  Select Chain
+                </option>
+                <option value="1">Ethereum</option>
+                <option value="137">Polygon</option>
+                <option value="56">BSC</option>
+                <option value="43114">Avalanche</option>
+                <option value="42161">Arbitrum One</option>
+                <option value="10">Optimism</option>
+                <option value="8453">Base</option>
+                <option value="324">zkSync</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        {children}
+      </div>
     </section>
   );
 }
