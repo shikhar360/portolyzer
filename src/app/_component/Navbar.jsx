@@ -57,7 +57,7 @@ function NavbarFixed() {
         </li>
       </ul>
       <div className="px-4 py-3 ml-2 text-white bg-tertiary-color rounded-3xl text-md hover:bg-buttonhover-color items-center">
-        <Link href={"/"}>Login</Link>
+        <Link href={"/login"}>Login</Link>
       </div>
     </nav>
   );
@@ -87,7 +87,7 @@ function NavbarScroll({ isScrolling }) {
           <Link href={"/"}>About</Link>
         </li>
         <li className="px-4 py-2 ml-2 text-white bg-tertiary-color rounded-full text-md ">
-          <Link href={"/"}>Login</Link>
+          <Link href={"/login"}>Login</Link>
         </li>
       </ul>
     </motion.nav>

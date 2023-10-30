@@ -81,8 +81,6 @@ export default function Feature() {
                 </div>
         </div>
         </div>
-
-       
 </section>
   );
 }

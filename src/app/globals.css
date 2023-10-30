@@ -248,7 +248,7 @@ button.learn-more {
 }
 /* Circle styles */
 button.learn-more .circle {
-  animation: grow 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  animation: grow;
   position: relative;
   display: block;
   margin: 0;
@@ -261,7 +261,7 @@ button.learn-more .circle {
 
 /* Icon styles */
 button.learn-more .circle .icon {
-  animation: grow 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  animation: grow;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -271,7 +271,7 @@ button.learn-more .circle .icon {
 }
 /* Arrow icon styles */
 button.learn-more .circle .icon.arrow {
-  animation: grow 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  animation: grow;
   left: 0.625rem;
   width: 1.125rem;
   height: 0.125rem;
@@ -292,7 +292,7 @@ button.learn-more .circle .icon.arrow::before {
 }
 /* Button text styles */
 button.learn-more .button-text {
-  animation: grow 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  animation: grow;
   position: absolute;
   top: 0;
   left: 0;
