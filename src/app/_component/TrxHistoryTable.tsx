@@ -29,7 +29,7 @@ const TrxHistoryTable: React.FC<TrxHistoryTableProps> = ({ transaction }) => {
   const formattedValue = (parseFloat(transaction.value) / 1e18).toFixed(6);
 
   return (
-        <tbody>
+        <tbody className=''>
             {/* <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600 text-slate-300"> */}
             <tr className="bg-slate-50 border-b hover:bg-white ">
                 <td className="px-6 py-4">

@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useStore } from "../store/Store";
 
+import { ToastContainer, toast , Flip } from "react-toastify";
 const Dashboard = () => {
   const eth = useStore((state) => state.ethAddr);
   const chain = useStore((state) => state.chain);
@@ -13,14 +14,17 @@ const Dashboard = () => {
  const [bal, setBal] = useState<number | string>(0);
  const [erc20, setErc20] = useState<any>('');
  const [cpage, setCPage] = useState<number >(1);
- 
 
   // console.log(selectedChain);
 
   useEffect(() => {
     async function getWalletData() {
       try {
-        if (!eth || !chain) return;
+        if(!eth || !chain){
+          toast.error("Please add your Wallet Address and Chain")
+          return
+         }
+
         // console.log(inputVal);
 
         const options = {
@@ -85,7 +89,7 @@ const Dashboard = () => {
       {erc20 ? erc20.map((token : any , idx: number) =><div key={idx}  className={`w-[80%] mx-auto `}>
         <p className={`text-xs truncate text-black/50`}>{token?.symbol.toUpperCase()}</p>
         <p className={`text-base truncate text-black/70`}>{(parseInt(token?.balance)/ 10**token.decimals).toFixed(2).toString()}</p>
-      </div>) : <div className={`text-xl font-mono`}>No Balance in Erc20 🥲</div>}
+      </div>) : <div className={`text-xl font-mono`}>No Balance in Erc20 🥲<br/> or <br/> Test : 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</div>}
         </div>
 
      { erc20 && <div className={`flex items-center justify-center gap-4  mx-auto mt-7 `}>
@@ -94,6 +98,7 @@ const Dashboard = () => {
       <img className={`w-7 cursor-pointer  `} onClick={()=>setCPage(prev =>  prev + 1 )}  alt="img" src="https://img.icons8.com/pulsar-line/48/000000/plus-math.png"/>
       
       </div>}
+     
     </div>
   );
 };
